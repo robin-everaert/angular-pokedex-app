@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
+import { POKEMON_LIST } from './pokemon-list.fake';
+import { Pokemon } from './pokemon.model';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,25 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
+
 export class AppComponent {
-  title = 'Hello Angular';
-}
+    pokemonList = signal(POKEMON_LIST);
+   life = signal(21);
+   size(pokemon: Pokemon) {
+    if(pokemon.life <= 15) {
+        return 'Petit';
+    } 
+    if(pokemon.life >= 25) {
+        return 'Grand';
+    }
+    return 'Moyen';
+   }
+
+   incrementLife(pokemon: Pokemon) {
+     pokemon.life = pokemon.life + 1;
+   }
+   
+   decrementLife(pokemon: Pokemon) {
+        pokemon.life = pokemon.life - 1;
+   }
+} 

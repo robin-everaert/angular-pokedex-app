@@ -1,1 +1,42 @@
-<h1>{{ title }}</h1>
+<nav class="navbar bg-success justify-content-center mb-5">
+        <h1 class="text-white text-center">Pokédex</h1>
+</nav>
+
+<div class="container">
+    <div class="row">
+        @for (pokemon of pokemonList(); track pokemon.id) {
+            <div class="col-md-4">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4 d-flex justify-content-center align-items-center bg-light"
+                        [id]=`pokemon-${pokemon.id}`
+                        >
+                            <img class="img-fluid rounded-start" 
+                            [src]="pokemon.picture" [alt]="pokemon.name">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h2 class="card-title">{{ pokemon.name }}</h2>
+                                <p class="card-subtitle">Point de vie: {{ pokemon.life }}</p>
+                                <p>Taille: {{ size(pokemon) }}</p>
+                            </div>
+                            <div class="d-flex ms-4 mr-1 mb-3">
+                                <button class="btn btn-outline-secondary  btn-sm"
+                                (click)="decrementLife(pokemon)"
+                                [disabled]="pokemon.life <= 10"
+                                >-</button>
+                                <button class="btn btn-outline-secondary btn-sm ms-1"
+                                (click)="incrementLife(pokemon)"
+                                [disabled]="pokemon.life >= 30"
+                                >+</button>             
+                            </div>
+                        </div>       
+                    </div>
+                </div>
+            </div>
+            
+        }
+    </div>
+</div>
+
+
