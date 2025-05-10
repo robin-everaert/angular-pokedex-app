@@ -23,7 +23,9 @@
     <div class="row">
         @for (pokemon of pokemonListFiltered(); track pokemon.id) {
             <div class="col-md-4">
-                <div class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]">
+                <a class="card mb-3" appPokemonBorder [pokemonType]="pokemon.types[0]"
+                [routerLink]="['/pokemons', pokemon.id]"
+                >
                     <div class="row g-0">
                         <div class="col-md-4 d-flex justify-content-center align-items-center bg-light"
                         [id]=`pokemon-${pokemon.id}`
@@ -35,27 +37,13 @@
                             <div class="card-body">
                                 <h2 class="card-title">{{ pokemon.name }}</h2>
                                 <p class="card-text fst-italic">{{ pokemon.created | date: 'shortDate' }}</p>
-                                <p class="card-text pb-0 mb-1"><span class="fst-italic">Point de vie:</span> {{ pokemon.life }}</p>
-                                <p class="mt-0"><span class="fst-italic">Taille:</span> {{ size(pokemon) }}</p>
+                                <p class="card-text pb-0 mb-0"><span class="fst-italic">Point de vie:</span> {{ pokemon.life }}</p>
+                                <p class="mt-1 mb-0"><span class="fst-italic">Taille:</span> {{ size(pokemon) }}</p>
+                                <p class="mt-2"><span class="fst-italic">Dégat:</span> {{ pokemon.damage}}</p>
                             </div>
-                            <div class="d-flex ms-4 mr-1 mb-3">
-                                <button class="btn btn-outline-secondary btn-sm"
-                                (click)="incrementLife(pokemon)"
-                                [disabled]="pokemon.life >= 30"
-                                >+</button>   
-                                <button class="btn btn-outline-secondary  btn-sm"
-                                (click)="decrementLife(pokemon)"
-                                [disabled]="pokemon.life <= 10"
-                                >-</button>          
-                            </div>
-                            <p class="card-text">
-                                <a class="text-small text-muted"
-                                [routerLink]="['/pokemons', pokemon.id]"
-                                >VOIR</a>
-                            </p>
                         </div>       
                     </div>
-                </div>
+                </a>
             </div>
             
         }
