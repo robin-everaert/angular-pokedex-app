@@ -1,19 +1,22 @@
 <div class="container mt-5">
+    @if(pokemon(); as pokemon) {
     <div class="card">
       <div class="row g-0">
         <div
           class="col-md-4 d-flex align-items-center justify-content-center bg-light"
         >
+        
           <img
-            [src]="pokemon().picture"
+            [src]="pokemon.picture"
             class="img-fluid rounded-start"
-            [alt]="pokemon().name"
+            [alt]="pokemon.name"
           />
+       
         </div>
         <div class="col-md-8">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="card-body">
-              <h2 class="card-title">{{ pokemon().name }}</h2>
+              <h2 class="card-title">{{ pokemon.name }}</h2>
               <table class="table">
                 <tbody>
                   <tr>
@@ -50,6 +53,7 @@
                     <td>
                       <div class="input-group">
                         <button class="btn btn-outline-secondary"
+                        type="button"
                         [disabled]="pokemonLife.value <= POKEMON_RULES.MIN_LIFE"
                         (click)="decrementLife()"
                         >
@@ -62,6 +66,7 @@
                           readonly
                         />
                         <button class="btn btn-outline-secondary" 
+                        type="button"
                         [disabled]="pokemonLife.value >= POKEMON_RULES.MAX_LIFE"
                         (click)="incrementLife()"
                         >
@@ -75,6 +80,7 @@
                     <td>
                       <div class="input-group">
                         <button class="btn btn-outline-secondary"
+                        type="button"
                         [disabled]="pokemonDamage.value <= POKEMON_RULES.MIN_DAMAGE"
                         (click)="decrementDamage()"
                         >
@@ -86,6 +92,7 @@
                           class="form-control text-center"
                         />
                         <button class="btn btn-outline-secondary"
+                        type="button"
                         [disabled]="pokemonDamage.value >= POKEMON_RULES.MAX_DAMAGE"
                         (click)="incrementDamage()"
                         >
@@ -144,7 +151,7 @@
               <div class="d-flex justify-content-between mt-4">
                 <button
                   class="btn btn-link text-decoration-none text-warning"
-                  [routerLink]="['/pokemons', pokemon().id]"
+                  [routerLink]="['/pokemons', pokemon.id]"
                 >
                   RETOUR
                 </button>
@@ -158,8 +165,15 @@
               </div>
             </div>
           </form>
+         
         </div>
       </div>
     </div>
+    }
+    @else {
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-success" role="status"></div>
+        </div>
+         }
   </div>
 
