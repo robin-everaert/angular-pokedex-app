@@ -19,7 +19,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container mt-4">
     <div class="row">
         @if(loading()) {
             <div class="d-flex justify-content-center">
@@ -53,4 +53,10 @@
             
         }
     </div>
+</div>
+
+<div class="position-fixed bottom-0 end-0 m-3">
+    <button type="button" class="btn btn-lg btn-success rounded-circle"
+    [routerLink]="['/pokemons/add']">
+    +</button>
 </div>

@@ -137,6 +137,18 @@
         "Feu"
       ],
       "created": "2024-08-16T00:00:00Z"
+    },
+    {
+      "name": "adzd",
+      "picture": "dzadd",
+      "life": 10,
+      "damage": 1,
+      "types": [
+        "Normal",
+        "Eau"
+      ],
+      "created": "2025-05-16T18:51:07.930Z",
+      "id": 13
     }
   ]
 }
